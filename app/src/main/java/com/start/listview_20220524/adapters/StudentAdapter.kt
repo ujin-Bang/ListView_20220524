@@ -35,10 +35,18 @@ class StudentAdapter(
 //        cf : ArrayList => 0번칸 ~ 갯수-1번칸 까지 존재함
         val data = mList[ position ]
 
-//        student_lis_item에 적어둔 id로 => 코틀린에서 다루도록 처리
+//        student_list_item에 적어둔 id로 => 코틀린에서 다루도록 처리
         val txtName =  row.findViewById<TextView>(R.id.txtName)
         val txtAge = row.findViewById<TextView>(R.id.txtAge)
         val txtAddress = row.findViewById<TextView>(R.id.txtAddress)
+
+        txtName.text = data.name
+//        txtAge.text = data.birthYear.toString()
+        txtAddress.text = data.address
+
+//        학생데이터의 출생년도 > 나이로 바꿔서(나이) 로 가공해서 출력.
+        val age = 2022 - data.birthYear + 1
+        txtAge.text = "(${age}세)"
 
 //        최종 결과로 나가자
         return row
