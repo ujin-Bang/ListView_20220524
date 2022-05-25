@@ -1,10 +1,12 @@
 package com.start.listview_20220524
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.start.listview_20220524.adapters.StudentAdapter
 import com.start.listview_20220524.databinding.ActivityMainBinding
@@ -58,11 +60,23 @@ class MainActivity : AppCompatActivity() {
 
 //            Toast.makeText(this, "${longClickedStudent.name}학생이 길게 눌림", Toast.LENGTH_SHORT).show()
 
-//            길게 눌린 학생을 목록에서 제거 -> 리스트뷰에서도 빠지게 해보자(삭제 기능)
-            mStudentList.remove(longClickedStudent)
+//            정말 그 학생을 지울것인지? 물어보고 확인을 눌러야만 지우자.
+            val alert = AlertDialog.Builder(this)
+            alert.setTitle("학생 삭제 확인")
+            alert.setMessage("정말 ${longClickedStudent.name}학생을 제거하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+
+//                확인이 눌려씅ㄹ때만 실행되는 코드
+                //            길게 눌린 학생을 목록에서 제거 -> 리스트뷰에서도 빠지게 해보자(삭제 기능)
+                mStudentList.remove(longClickedStudent)
 
 //            리스트뷰 -> 어댑터에게 새로고침 시키자(인지시키자)
-            mStudentAdapter.notifyDataSetChanged()
+                mStudentAdapter.notifyDataSetChanged()
+            })
+            alert.setNegativeButton("취소", null)
+            alert.show()
+
+
 
 //          Boolean(true / false)을 결과로 지정해줘야함.
             return@setOnItemLongClickListener true
