@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.start.listview_20220524.adapters.StudentAdapter
 import com.start.listview_20220524.databinding.ActivityMainBinding
 import com.start.listview_20220524.datas.StudentData
+import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,9 +48,10 @@ class MainActivity : AppCompatActivity() {
 
 //            상세보기 화면으로 이동
             val myIntent = Intent(this, ViewStudentDetailActivity::class.java)
-            myIntent.putExtra("name",clickedStudent.name)
-            myIntent.putExtra("birthYear",clickedStudent.birthYear)
-            myIntent.putExtra("address",clickedStudent.address)
+//            myIntent.putExtra("name",clickedStudent.name)
+//            myIntent.putExtra("birthYear",clickedStudent.birthYear)
+//            myIntent.putExtra("address",clickedStudent.address)
+            myIntent.putExtra("student",clickedStudent)
             startActivity(myIntent)
 
         }
@@ -66,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             alert.setMessage("정말 ${longClickedStudent.name}학생을 제거하시겠습니까?")
             alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
 
-//                확인이 눌려씅ㄹ때만 실행되는 코드
+//                확인이 눌렸을 때만 실행되는 코드
                 //            길게 눌린 학생을 목록에서 제거 -> 리스트뷰에서도 빠지게 해보자(삭제 기능)
                 mStudentList.remove(longClickedStudent)
 

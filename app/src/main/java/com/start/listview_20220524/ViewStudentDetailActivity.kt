@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.start.listview_20220524.databinding.ActivityMainBinding
 import com.start.listview_20220524.databinding.ActivityViewStudentDetailBinding
+import com.start.listview_20220524.datas.StudentData
 
 class ViewStudentDetailActivity : AppCompatActivity() {
 
@@ -14,15 +15,20 @@ class ViewStudentDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_view_student_detail)
 
-        val name = intent.getStringExtra("name")
-        binding.txtName.text = name
+//        val name = intent.getStringExtra("name")
+//        binding.txtName.text = name
+//
+//        val address = intent.getStringExtra("address")
+//        binding.txtAddress.text = address
+//
+//        val birthYear = intent.getIntExtra("birthYear", 0)
+//        val age = 2022 - birthYear + 1
+////        binding.txtAge.text = birthYear.toString()
+//        binding.txtAge.text = "${age}세 입니다."
 
-        val address = intent.getStringExtra("address")
-        binding.txtAddress.text = address
-
-        val birthYear = intent.getIntExtra("birthYear", 0)
-        val age = 2022 - birthYear + 1
-//        binding.txtAge.text = birthYear.toString()
-        binding.txtAge.text = "${age}세 입니다."
+        val studentData = intent.getSerializableExtra("student") as StudentData
+        binding.txtName.text = studentData.name
+        binding.txtAddress.text = studentData.address
+        binding.txtAge.text = "${studentData.age(2022)} 세입니다."
     }
 }
