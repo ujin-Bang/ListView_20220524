@@ -39,8 +39,18 @@ class MainActivity : AppCompatActivity() {
 //            눌린 위치에 맞는 학생 데이터 변수에 저장
             val clickedStudent = mStudentList[ position ]
 
-//            ex. 눌린 학생의 이름을 토스트로 출력
+//            ex. 클릭된 학생의 이름을 토스트로 출력
             Toast.makeText(this, "${clickedStudent.name} 학생 클릭됨", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.studentListView.setOnItemLongClickListener { parent, view, position, id ->
+
+            val longClickedStudent = mStudentList [position]
+
+            Toast.makeText(this, "${longClickedStudent.name}학생이 길게 눌림", Toast.LENGTH_SHORT).show()
+
+//          Boolean(true / false)을 결과로 지정해줘야함.
+            return@setOnItemLongClickListener true
         }
 
     }
