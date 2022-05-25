@@ -2,6 +2,8 @@ package com.start.listview_20220524
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.start.listview_20220524.adapters.StudentAdapter
 import com.start.listview_20220524.databinding.ActivityMainBinding
@@ -29,6 +31,17 @@ class MainActivity : AppCompatActivity() {
         mStudentAdapter = StudentAdapter(this, R.layout.student_list_item, mStudentList)
         binding.studentListView.adapter = mStudentAdapter
 
+//        리스트뷰의 각 줄이 눌린 이벤트처리
+        binding.studentListView.setOnItemClickListener { parent, view, position, id ->
+//            position : 몇번 줄리 눌렸는가? 알려주는 역할.
+            Log.d("리스트뷰클릭됨","${position}번줄 클릭됨")
+
+//            눌린 위치에 맞는 학생 데이터 변수에 저장
+            val clickedStudent = mStudentList[ position ]
+
+//            ex. 눌린 학생의 이름을 토스트로 출력
+            Toast.makeText(this, "${clickedStudent.name} 학생 클릭됨", Toast.LENGTH_SHORT).show()
+        }
 
     }
 }
