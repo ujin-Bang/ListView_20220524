@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
 
     val mStudentList = ArrayList<StudentData>()
     lateinit var mStudentAdapter : StudentAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
