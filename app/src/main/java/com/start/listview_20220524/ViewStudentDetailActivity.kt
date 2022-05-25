@@ -21,7 +21,8 @@ class ViewStudentDetailActivity : AppCompatActivity() {
         binding.txtAddress.text = address
 
         val birthYear = intent.getIntExtra("birthYear", 0)
-        binding.txtAge.text = birthYear.toString()
-
+        val age = 2022 - birthYear + 1
+//        binding.txtAge.text = birthYear.toString()
+        binding.txtAge.text = "${age}세 입니다."
     }
 }
