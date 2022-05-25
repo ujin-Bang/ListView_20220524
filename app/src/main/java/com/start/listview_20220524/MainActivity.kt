@@ -1,5 +1,6 @@
 package com.start.listview_20220524
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -40,7 +41,15 @@ class MainActivity : AppCompatActivity() {
             val clickedStudent = mStudentList[ position ]
 
 //            ex. 클릭된 학생의 이름을 토스트로 출력
-            Toast.makeText(this, "${clickedStudent.name} 학생 클릭됨", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "${clickedStudent.name} 학생 클릭됨", Toast.LENGTH_SHORT).show()
+
+//            상세보기 화면으로 이동
+            val myIntent = Intent(this, ViewStudentDetailActivity::class.java)
+            myIntent.putExtra("name",clickedStudent.name)
+            myIntent.putExtra("birthYear",clickedStudent.birthYear)
+            myIntent.putExtra("address",clickedStudent.address)
+            startActivity(myIntent)
+
         }
 
         binding.studentListView.setOnItemLongClickListener { parent, view, position, id ->
